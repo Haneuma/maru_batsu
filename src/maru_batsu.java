@@ -72,42 +72,41 @@ public class maru_batsu extends Application {
 		Stack[XDigit][YDigit] = 1;
 
 		i++;
-			if (i == 9)
+
 			result(stage);
 	}
 
 	void result(Stage stage) {
 		// TODO 自動生成されたメソッド・スタブ
-		int j = 0;
-		int k = 0;
-		for (j = 0; j < 3; j++) {
+
+		for (int j = 0, k = 0; j < 3; j++) {
 
 			if ((type[j][k] == 8) && (type[j][k + 1] == 8) && (type[j][k + 2] == 8)) {
-				result.setText("○の勝ち");
+				result.setText("マルの勝ち");
 			} else if ((type[j][k] == 9) && (type[j][k + 1] == 9) && (type[j][k + 2] == 9)) {
-				result.setText("×の勝ち");
+				result.setText("バツの勝ち");
 			}
 		}
 
-		for (k = 0; k < 3; k++) {
+		for (int j = 0, k = 0; k < 3; k++) {
 
 			if ((type[j][k] == 8) && (type[j + 1][k] == 8) && (type[j + 2][k] == 8)) {
-				result.setText("○の勝ち");
+				result.setText("マルの勝ち");
 			} else if ((type[j][k] == 9) && (type[j + 1][k] == 9) && (type[j + 2][k] == 9)) {
-				result.setText("×の勝ち");
+				result.setText("バツの勝ち");
 			}
 		}
 
 		if ((type[0][0] == 8) && (type[1][1] == 8) && (type[2][2] == 8)) {
-			result.setText("○の勝ち");
+			result.setText("マルの勝ち");
 		} else if ((type[0][0] == 9) && (type[1][1] == 9) && (type[2][2] == 9)) {
-			result.setText("×の勝ち");
+			result.setText("バツの勝ち");
 		}
 
 		if ((type[0][2] == 8) && (type[1][1] == 8) && (type[2][0] == 8)) {
-			result.setText("○の勝ち");
+			result.setText("マルの勝ち");
 		} else if ((type[0][2] == 9) && (type[1][1] == 9) && (type[2][0] == 9)) {
-			result.setText("×の勝ち");
+			result.setText("バツの勝ち");
 		}
 
 	}
