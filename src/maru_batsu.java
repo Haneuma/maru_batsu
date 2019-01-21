@@ -17,9 +17,9 @@ public class maru_batsu extends Application {
 	final Canvas canvas = new Canvas(320, 320);
 	GraphicsContext gc = canvas.getGraphicsContext2D();
 	int i = 0;
-	int masu = 3;
-	int Stack[][] = new int[masu][masu];
-	int type[][] = new int[masu][masu];
+
+	int Stack[][] = new int[3][3];
+	int type[][] = new int[3][3];
 	Label result = new Label("結果がここに表示されます");
 
 	public static void main(String[] args) {
@@ -119,6 +119,17 @@ public class maru_batsu extends Application {
 			flg = true;
 		}
 
+		if (flg == true) {
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+
+					if (Stack[i][j] == 0) {
+						Stack[i][j] = 1;
+					}
+				}
+			}
+		}
+
 		if ((count == 9) && (flg == false))
 			result.setText("引き分け");
 	}
@@ -130,8 +141,8 @@ public class maru_batsu extends Application {
 		//フラグのリセット
 		i = 0;
 
-		for (int i = 0; i < masu; i++) {
-			for (int j = 0; j < masu; j++) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
 				Stack[i][j] = 0;
 				type[i][j] = 0;
 			}
