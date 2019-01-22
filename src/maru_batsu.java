@@ -1,4 +1,5 @@
 import java.nio.file.Paths;
+import java.util.Random;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -60,19 +61,30 @@ public class maru_batsu extends Application {
 
 		if (Stack[XDigit][YDigit] == 1) {
 			i--;
-		} else if (i % 2 == 0) {
+
+		} else {
+			//まず、自分の番。
 			Image imgm = new Image(Paths.get("image/mark_maru_s.png").toUri().toString());
 			gc.drawImage(imgm, X, Y);
 			type[XDigit][YDigit] = 8;
-		} else if (i % 2 == 1) {
+			i++;
+			Stack[XDigit][YDigit] = 1;
+
+			///続いて、COMの番。
+			X = (int) (createRum() / 100) * 100; //座標指定X
+			Y = (int) (createRum() / 100) * 100; //座標指定Y
+			XDigit = X / 100;
+			YDigit = Y / 100;
 			Image imgb = new Image(Paths.get("image/mark_batsu_s.png").toUri().toString());
 			gc.drawImage(imgb, X, Y);
 			type[XDigit][YDigit] = 9;
+			i++;
+			Stack[XDigit][YDigit] = 1;
 		}
 
-		Stack[XDigit][YDigit] = 1;
 
-		i++;
+
+
 
 		result(stage, i);
 	}
@@ -147,6 +159,13 @@ public class maru_batsu extends Application {
 				type[i][j] = 0;
 			}
 		}
+	}
+
+	private int createRum() {
+		Random rnd = new Random();
+		int ran = rnd.nextInt(100);
+
+		return ran;
 	}
 
 }
