@@ -30,6 +30,7 @@ public class maru_batsu extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+
 		// TODO 自動生成されたメソッド・スタブ
 		stage.setWidth(320);
 		stage.setHeight(450);
@@ -54,37 +55,35 @@ public class maru_batsu extends Application {
 	}
 
 	void Drawimg(MouseEvent event, int count, Stage stage) {
+
 		int X = (int) (event.getSceneX() / 100) * 100; //座標指定X
 		int Y = (int) (event.getSceneY() / 100) * 100; //座標指定Y
 		int XDigit = X / 100;
 		int YDigit = Y / 100;
-
-		if (Stack[XDigit][YDigit] == 1) {
-			i--;
-
-		} else {
-			//まず、自分の番。
+		Boolean Puttable = false;
+		if (Stack[XDigit][YDigit] == 0) {
 			Image imgm = new Image(Paths.get("image/mark_maru_s.png").toUri().toString());
 			gc.drawImage(imgm, X, Y);
 			type[XDigit][YDigit] = 8;
-			i++;
 			Stack[XDigit][YDigit] = 1;
+			i++;
+			//comに置き換え予定
 
-			///続いて、COMの番。
-			X = (int) (createRum() / 100) * 100; //座標指定X
-			Y = (int) (createRum() / 100) * 100; //座標指定Y
-			XDigit = X / 100;
-			YDigit = Y / 100;
+			while (Puttable == false) {
+				X = (int) createRum() * 100; //座標指定X
+				Y = (int) createRum() * 100; //座標指定Y
+				XDigit = X / 100;
+				YDigit = Y / 100;
+				if (Stack[XDigit][YDigit] == 0) {
+					Puttable = true;
+				}
+			}
 			Image imgb = new Image(Paths.get("image/mark_batsu_s.png").toUri().toString());
 			gc.drawImage(imgb, X, Y);
 			type[XDigit][YDigit] = 9;
-			i++;
 			Stack[XDigit][YDigit] = 1;
+			i++;
 		}
-
-
-
-
 
 		result(stage, i);
 	}
@@ -163,7 +162,7 @@ public class maru_batsu extends Application {
 
 	private int createRum() {
 		Random rnd = new Random();
-		int ran = rnd.nextInt(100);
+		int ran = rnd.nextInt(3);
 
 		return ran;
 	}
