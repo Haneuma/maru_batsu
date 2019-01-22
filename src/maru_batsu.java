@@ -67,25 +67,29 @@ public class maru_batsu extends Application {
 			type[XDigit][YDigit] = 8;
 			Stack[XDigit][YDigit] = 1;
 			i++;
+			System.out.println(i);
 			//comに置き換え予定
 
-			while (Puttable == false) {
-				X = (int) createRum() * 100; //座標指定X
-				Y = (int) createRum() * 100; //座標指定Y
-				XDigit = X / 100;
-				YDigit = Y / 100;
-				if (Stack[XDigit][YDigit] == 0) {
-					Puttable = true;
+			if (i <= 8) {
+				while (Puttable == false) {
+					X = (int) createRum() * 100; //座標指定X
+					Y = (int) createRum() * 100; //座標指定Y
+					XDigit = X / 100;
+					YDigit = Y / 100;
+					if (Stack[XDigit][YDigit] == 0) {
+						Puttable = true;
+					}
 				}
+				Image imgb = new Image(Paths.get("image/mark_batsu_s.png").toUri().toString());
+				gc.drawImage(imgb, X, Y);
+				type[XDigit][YDigit] = 9;
+				Stack[XDigit][YDigit] = 1;
+				i++;
+				System.out.println(i);
 			}
-			Image imgb = new Image(Paths.get("image/mark_batsu_s.png").toUri().toString());
-			gc.drawImage(imgb, X, Y);
-			type[XDigit][YDigit] = 9;
-			Stack[XDigit][YDigit] = 1;
-			i++;
 		}
-
 		result(stage, i);
+
 	}
 
 	void result(Stage stage, int count) {
@@ -147,7 +151,7 @@ public class maru_batsu extends Application {
 
 	void reset() {
 		// 描画のリセット
-		gc.clearRect(0, 0, 400, 300);
+		gc.clearRect(0, 0, 320, 320);
 		result.setText("結果がここに表示されます");
 		//フラグのリセット
 		i = 0;
